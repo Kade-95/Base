@@ -21,12 +21,10 @@ class Base extends Components {
         this.NeuralNetwork = NeuralNetwork;
         this.Shadow = Shadow;
         this.colorHandler = new ColorPicker();
-        this.api = new API();
         this.array = ArrayLibrary();
         this.object = ObjectLibrary();
         this.math = MathsLibrary();
         this.analytics = AnalysisLibrary();
-        this.database = Database;
         this.icons = Icons;
     }
 }
