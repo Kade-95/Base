@@ -1,6 +1,4 @@
 import { Template } from './Template.js';
-import { API } from './API.js';
-let api = new API();
 
 export class Components extends Template {
     constructor() {
