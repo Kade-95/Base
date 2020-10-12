@@ -1,1 +1,1 @@
-import { Database, Kerdx } from './index.js';
+import { Database, Base } from './index.js';
