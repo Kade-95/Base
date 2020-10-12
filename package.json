@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/Kade-95/Base/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/Kade-95/Base#readme"
 }
