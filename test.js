@@ -1,1 +1,1 @@
-import { Database, Base } from './index.js';
+import { Base } from './index.js';
