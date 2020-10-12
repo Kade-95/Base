@@ -2,7 +2,6 @@ import { Func } from './classes/Func.js';
 import { Matrix } from './classes/Matrix.js';
 import { NeuralNetwork } from './classes/NeuralNetwork.js';
 import { Template } from './classes/Template.js';
-import { API } from './classes/API.js';
 import { Components } from './classes/Components.js';
 import { ColorPicker } from './classes/ColorPicker.js';
 import { Period } from './classes/Period.js';
@@ -12,7 +11,6 @@ import { ArrayLibrary } from './functions/Array.js';
 import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
-import { Database } from './functions/Database.js';
 import { Compression } from './functions/Compression.js';
 import { Tree } from './classes/Tree.js';
 
@@ -30,19 +28,6 @@ class Base extends Components {
         this.analytics = AnalysisLibrary();
         this.database = Database;
         this.icons = Icons;
-        this.currentPage = location.href;
-        this.styles = [
-            'https://kade-95.github.io/kerdx/css/table.css',
-            'https://kade-95.github.io/kerdx/css/cell.css',
-            'https://kade-95.github.io/kerdx/css/form.css',
-            'https://kade-95.github.io/kerdx/css/picker.css',
-            'https://kade-95.github.io/kerdx/css/select.css',
-            'https://kade-95.github.io/kerdx/css/json.css',
-            'https://kade-95.github.io/kerdx/css/popup.css'
-        ];
-        for (let style of this.styles) {
-            this.loadCss(style);
-        }
     }
 }
 
@@ -56,13 +41,11 @@ export {
     Template,
     NeuralNetwork,
     Icons,
-    API,
     Shadow,
     ArrayLibrary,
     ObjectLibrary,
     MathsLibrary,
     AnalysisLibrary,
-    Database,
     Compression,
     Tree
 };
