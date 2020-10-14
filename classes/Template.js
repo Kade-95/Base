@@ -1,4 +1,4 @@
-import { JSElements } from './JSElements.js';
+import { JSElements } from './JSElements';
 
 class Template extends JSElements {
     constructor() {

@@ -1,4 +1,4 @@
-import { Func } from './Func.js';
+import { Func } from './Func';
 let func = new Func()
 
 class Matrix {
