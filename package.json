@@ -1,7 +1,6 @@
 {
-  "name": "kerdbase",
+  "name": "@thekade/kerdbase",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +10,11 @@
     "url": "git+https://github.com/Kade-95/KerdBase.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "thekade",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kade-95/KerdBase/issues"
   },
-  "homepage": "https://github.com/Kade-95/KerdBase#readme"
+  "homepage": "https://github.com/Kade-95/KerdBase#readme",
+  "description": ""
 }
