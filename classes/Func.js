@@ -188,7 +188,7 @@ class Func {
     }
 
     emptyObject(obj) {
-        return JSON.stringify(obj) = JSON.stringify({});
+        return JSON.stringify(obj) == JSON.stringify({});
     }
 
     random(params = { limit: 1, range: 1 }) {
