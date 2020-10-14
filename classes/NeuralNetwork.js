@@ -5,7 +5,7 @@ import { ArrayLibrary } from './../functions/Array.js';
 let func = new Func();
 let arrayLibrary = ArrayLibrary();
 
-export class NeuralNetwork {
+class NeuralNetwork {
     constructor(params) {
         func.object.copy(params, this);
         this.ihWeights = new Matrix({ rows: this.hNodes, cols: this.iNodes });
@@ -121,3 +121,5 @@ export class NeuralNetwork {
         return targets;
     }
 }
+
+export { NeuralNetwork };
