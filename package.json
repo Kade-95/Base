@@ -4,19 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kade-95/Base.git"
+    "url": "git+https://github.com/Kade-95/KerdBase.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kade-95/Base/issues"
+    "url": "https://github.com/Kade-95/KerdBase/issues"
   },
-  "homepage": "https://github.com/Kade-95/Base#readme",
-  "type": "module"
+  "homepage": "https://github.com/Kade-95/KerdBase#readme"
 }
