@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kade-95/KerdBase.git"
+    "url": "git+https://github.com/Kade-95/Base.git"
   },
   "keywords": [],
   "author": "thekade",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Kade-95/KerdBase/issues"
+    "url": "https://github.com/Kade-95/Base/issues"
   },
-  "homepage": "https://github.com/Kade-95/KerdBase#readme",
+  "homepage": "https://github.com/Kade-95/Base#readme",
   "description": "",
   "type": "module"
 }
