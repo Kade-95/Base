@@ -7,7 +7,7 @@ let mathLibrary = MathsLibrary();
 import { ObjectLibrary } from './Objects.js';
 let objectLibrary = ObjectLibrary();
 
-import { Tree } from '../classes/Tree.js';
+// import { Tree } from '../classes/Tree.js';
 
 function Compression() {
     const self = {};
@@ -240,192 +240,192 @@ function Compression() {
         return { table, data, avgLength, tree };
     }
 
-    self.encodeHuffman = (data, dictionary = []) => {
-        let dictionaryLength = dictionary.length;
-        let codeWord = '', nytCode, code;
+    // self.encodeHuffman = (data, dictionary = []) => {
+    //     let dictionaryLength = dictionary.length;
+    //     let codeWord = '', nytCode, code;
 
-        //get the e and r parameters
-        let { e, r } = (() => {
-            let ok = false;
-            let e = 0, r;
-            while (!ok) {
-                e++;
-                r = dictionaryLength - 2 ** e;
-                ok = r < 2 ** e;
-            }
-            return { e, r };
-        })();
+    //     //get the e and r parameters
+    //     let { e, r } = (() => {
+    //         let ok = false;
+    //         let e = 0, r;
+    //         while (!ok) {
+    //             e++;
+    //             r = dictionaryLength - 2 ** e;
+    //             ok = r < 2 ** e;
+    //         }
+    //         return { e, r };
+    //     })();
 
-        let fixedCode = (symbol) => {//get the fixed code
-            let k = dictionary.indexOf(symbol) + 1;
-            let code;
-            if (k <= 2 * r) { // 1 <= k <= 2r
-                code = (k - 1).toString(2);
-                code = Array((e + 1) - code.length).fill(0).join('') + code; // e + 1 representation of k - 1
-            }
-            else if (k > 2 * r) {//k > 2r
-                code = (k - r - 1).toString(2);
-                code = Array((e) - code.length).fill(0).join('') + code;// e representation of k - r - 1
-            }
-            return code;
-        }
+    //     let fixedCode = (symbol) => {//get the fixed code
+    //         let k = dictionary.indexOf(symbol) + 1;
+    //         let code;
+    //         if (k <= 2 * r) { // 1 <= k <= 2r
+    //             code = (k - 1).toString(2);
+    //             code = Array((e + 1) - code.length).fill(0).join('') + code; // e + 1 representation of k - 1
+    //         }
+    //         else if (k > 2 * r) {//k > 2r
+    //             code = (k - r - 1).toString(2);
+    //             code = Array((e) - code.length).fill(0).join('') + code;// e representation of k - r - 1
+    //         }
+    //         return code;
+    //     }
 
-        let updateCount = (t) => {//set the count of a node and switch if left is greater than right
-            let count = t.getAttribute('count');
-            count++;
-            t.setAttributes({ count });
-            let p = t.parentTree;
-            if (p != null) {
-                trySwitching(p);
-                updateCount(p);
-            }
-        }
+    //     let updateCount = (t) => {//set the count of a node and switch if left is greater than right
+    //         let count = t.getAttribute('count');
+    //         count++;
+    //         t.setAttributes({ count });
+    //         let p = t.parentTree;
+    //         if (p != null) {
+    //             trySwitching(p);
+    //             updateCount(p);
+    //         }
+    //     }
 
-        let trySwitching = (node) => {//switch if left is greater than right
-            if (node.values[0].getAttribute('count') > node.values[1].getAttribute('count')) {
-                node.reverse();
-            }
-        };
+    //     let trySwitching = (node) => {//switch if left is greater than right
+    //         if (node.values[0].getAttribute('count') > node.values[1].getAttribute('count')) {
+    //             node.reverse();
+    //         }
+    //     };
 
-        let tree = new Tree();
-        tree.setAttribute('count', 0);
-        let NYT = tree;
+    //     let tree = new Tree();
+    //     tree.setAttribute('count', 0);
+    //     let NYT = tree;
 
-        let readSymbol = (symbol) => {
-            let s = tree.search((v, i) => {//search and get symbol node if added already
-                return v.getAttribute('id') == symbol;
-            }, tree.height);
+    //     let readSymbol = (symbol) => {
+    //         let s = tree.search((v, i) => {//search and get symbol node if added already
+    //             return v.getAttribute('id') == symbol;
+    //         }, tree.height);
 
-            let v = s.value;
-            nytCode = tree.search((v, i) => {//get the nyt node
-                return v.getAttribute('id') == 'nyt';
-            }, tree.height).path.join('');
+    //         let v = s.value;
+    //         nytCode = tree.search((v, i) => {//get the nyt node
+    //             return v.getAttribute('id') == 'nyt';
+    //         }, tree.height).path.join('');
 
-            if (v == undefined) {//has not been added
-                NYT.removeAttribute('id');//remove the current NYT tag
-                NYT.push([], []);//add the 2 nodes
-                let temp = NYT.values[0];
-                v = NYT.values[1];
+    //         if (v == undefined) {//has not been added
+    //             NYT.removeAttribute('id');//remove the current NYT tag
+    //             NYT.push([], []);//add the 2 nodes
+    //             let temp = NYT.values[0];
+    //             v = NYT.values[1];
 
-                temp.setAttributes({ id: 'nyt', count: 0 });//set new nyt
-                v.setAttributes({ id: symbol, count: 0 });
-                NYT = temp;
-                code = nytCode + fixedCode(symbol);//nyt + fixedCode
-            }
-            else {
-                code = s.path.join('');//get path
-            }
+    //             temp.setAttributes({ id: 'nyt', count: 0 });//set new nyt
+    //             v.setAttributes({ id: symbol, count: 0 });
+    //             NYT = temp;
+    //             code = nytCode + fixedCode(symbol);//nyt + fixedCode
+    //         }
+    //         else {
+    //             code = s.path.join('');//get path
+    //         }
 
-            codeWord += code;//concat the code
+    //         codeWord += code;//concat the code
 
-            updateCount(v);//update the count starting from this node to the root
-        }
+    //         updateCount(v);//update the count starting from this node to the root
+    //     }
 
-        for (let symbol of data) {
-            readSymbol(symbol);
-        }
+    //     for (let symbol of data) {
+    //         readSymbol(symbol);
+    //     }
 
-        return { codeWord, tree, data };
-    }
+    //     return { codeWord, tree, data };
+    // }
 
-    self.decodeHuffman = (codeWord, dictionary = []) => {
-        let dictionaryLength = dictionary.length;
-        let data = '', nytCode, code, path = [];
-        let tree = new Tree();
-        tree.setAttributes({ count: 0, id: 'nyt' });
-        let NYT = tree;
-        let i;
-        let { e, r } = (() => {
-            let ok = false;
-            let e = 0, r;
-            while (!ok) {
-                e++;
-                r = dictionaryLength - 2 ** e;
-                ok = r < 2 ** e;
-            }
-            return { e, r };
-        })();
+    // self.decodeHuffman = (codeWord, dictionary = []) => {
+    //     let dictionaryLength = dictionary.length;
+    //     let data = '', nytCode, code, path = [];
+    //     let tree = new Tree();
+    //     tree.setAttributes({ count: 0, id: 'nyt' });
+    //     let NYT = tree;
+    //     let i;
+    //     let { e, r } = (() => {
+    //         let ok = false;
+    //         let e = 0, r;
+    //         while (!ok) {
+    //             e++;
+    //             r = dictionaryLength - 2 ** e;
+    //             ok = r < 2 ** e;
+    //         }
+    //         return { e, r };
+    //     })();
 
-        let trySwitching = (node) => {//switch nodes if left side is greater than right side
-            if (node.values[0].getAttribute('count') > node.values[1].getAttribute('count')) {
-                node.reverse();
-            }
-        };
+    //     let trySwitching = (node) => {//switch nodes if left side is greater than right side
+    //         if (node.values[0].getAttribute('count') > node.values[1].getAttribute('count')) {
+    //             node.reverse();
+    //         }
+    //     };
 
-        let updateCount = (t) => {//update the size of the current node and it's next parent
-            let count = t.getAttribute('count');
-            count++;
-            t.setAttributes({ count });
-            let p = t.parentTree;
-            if (p != null) {
-                trySwitching(p);
-                updateCount(p);
-            }
-        }
+    //     let updateCount = (t) => {//update the size of the current node and it's next parent
+    //         let count = t.getAttribute('count');
+    //         count++;
+    //         t.setAttributes({ count });
+    //         let p = t.parentTree;
+    //         if (p != null) {
+    //             trySwitching(p);
+    //             updateCount(p);
+    //         }
+    //     }
 
-        let readSymbol = (symbol) => {
-            let s = tree.search((v) => {
-                return v.getAttribute('id') == symbol;//search and get symbol if exists already
-            }, tree.height);
+    //     let readSymbol = (symbol) => {
+    //         let s = tree.search((v) => {
+    //             return v.getAttribute('id') == symbol;//search and get symbol if exists already
+    //         }, tree.height);
 
-            let v = s.value;
-            nytCode = tree.search((v, i) => {
-                return v.getAttribute('id') == 'nyt';//get the NYT code
-            }, tree.height).path.join('');
+    //         let v = s.value;
+    //         nytCode = tree.search((v, i) => {
+    //             return v.getAttribute('id') == 'nyt';//get the NYT code
+    //         }, tree.height).path.join('');
 
-            if (v == undefined) {//new symbol? add it to the tree with new NYT
-                NYT.removeAttribute('id');
-                NYT.push([], []);
-                let temp = NYT.values[0];
-                v = NYT.values[1];
+    //         if (v == undefined) {//new symbol? add it to the tree with new NYT
+    //             NYT.removeAttribute('id');
+    //             NYT.push([], []);
+    //             let temp = NYT.values[0];
+    //             v = NYT.values[1];
 
-                temp.setAttributes({ id: 'nyt', count: 0 });
-                v.setAttributes({ id: symbol, count: 0 });
-                NYT = temp;
-            }
+    //             temp.setAttributes({ id: 'nyt', count: 0 });
+    //             v.setAttributes({ id: symbol, count: 0 });
+    //             NYT = temp;
+    //         }
 
-            updateCount(v);
-        }
+    //         updateCount(v);
+    //     }
 
-        let interprete = (node) => {
-            let code;
-            if (node == NYT) {//is node NYT
-                for (let j = 0; j < e; j++) {//read next 4 codes
-                    path.push(codeWord[++i]);
-                }
-                let p = parseInt(path.join(''), 2);
-                if (p < r) {//p is more than r, read 1 more
-                    path.push(codeWord[++i]);
-                    p = parseInt(path.join(''), 2);
-                }
-                else {
-                    p += r;//add r to p
-                }
-                code = dictionary[p];//get symbol from dictionary
-                readSymbol(code);//add this symbol to tree
-            }
-            else {
-                code = node.getAttribute('id');//get the symbol from the tree
-                readSymbol(code);//update the symbol
-            }
-            return code;
-        }
+    //     let interprete = (node) => {
+    //         let code;
+    //         if (node == NYT) {//is node NYT
+    //             for (let j = 0; j < e; j++) {//read next 4 codes
+    //                 path.push(codeWord[++i]);
+    //             }
+    //             let p = parseInt(path.join(''), 2);
+    //             if (p < r) {//p is more than r, read 1 more
+    //                 path.push(codeWord[++i]);
+    //                 p = parseInt(path.join(''), 2);
+    //             }
+    //             else {
+    //                 p += r;//add r to p
+    //             }
+    //             code = dictionary[p];//get symbol from dictionary
+    //             readSymbol(code);//add this symbol to tree
+    //         }
+    //         else {
+    //             code = node.getAttribute('id');//get the symbol from the tree
+    //             readSymbol(code);//update the symbol
+    //         }
+    //         return code;
+    //     }
 
-        for (i = -1; i < codeWord.length; i++) {//start with empty NYT
-            let code = codeWord[i];
-            if (code != undefined) {//when not empty
-                path.push(code);
-            }
-            let node = tree.trace(path).value;
-            if (node.getAttribute('id') != undefined) {//is node labelled
-                path = [item];
-                data += interprete(node);//what is this node
-                path = [];
-            }
-        }
+    //     for (i = -1; i < codeWord.length; i++) {//start with empty NYT
+    //         let code = codeWord[i];
+    //         if (code != undefined) {//when not empty
+    //             path.push(code);
+    //         }
+    //         let node = tree.trace(path).value;
+    //         if (node.getAttribute('id') != undefined) {//is node labelled
+    //             path = [item];
+    //             data += interprete(node);//what is this node
+    //             path = [];
+    //         }
+    //     }
 
-        return { data, tree, codeWord };
-    }
+    //     return { data, tree, codeWord };
+    // }
 
     self.golomb = (n, m) => {
         let q = Math.floor(n / m);//step 1

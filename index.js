@@ -12,7 +12,6 @@ import { ObjectLibrary } from './functions/Objects.js';
 import { MathsLibrary } from './functions/Math.js';
 import { AnalysisLibrary } from './functions/Analytics.js';
 import { Compression } from './functions/Compression.js';
-import { Tree } from './classes/Tree.js';
 
 class Base extends Components {
     constructor() {
@@ -58,5 +57,4 @@ export {
     MathsLibrary,
     AnalysisLibrary,
     Compression,
-    Tree
 };
