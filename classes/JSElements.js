@@ -81,7 +81,7 @@ class JSElements extends Period {
                 if (attr == 'style') {//set the styles
                     created.css(object.attributes[attr]);
                 }
-                // else created.setAttribute(attr, object.attributes[attr]);
+                else created.setAttribute(attr, object.attributes[attr]);
             }
         }
 
