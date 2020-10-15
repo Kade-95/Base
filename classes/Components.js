@@ -1,8 +1,10 @@
 const Template = require('./Template');
+class Empty {
+}
 
 class Components extends Template {
-    constructor() {
-        super();
+    constructor(theWindow = Empty) {
+        super(theWindow);
     }
 
     createTab(params = { titles: [] }) {

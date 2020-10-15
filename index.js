@@ -13,9 +13,12 @@ const MathsLibrary = require('./functions/MathsLibrary');
 const AnalysisLibrary = require('./functions/AnalysisLibrary');
 const Compression = require('./functions/Compression');
 
+class Empty {
+}
+
 class Base extends Components {
-    constructor() {
-        super();
+    constructor(theWindow = Empty) {
+        super(theWindow);
         this.colorHandler = new ColorPicker();
         this.array = ArrayLibrary();
         this.object = ObjectsLibrary();
