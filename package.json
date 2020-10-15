@@ -7,7 +7,8 @@
     "start": "nodemon start",
     "patch": "npm version patch",
     "minor": "npm version minor",
-    "major": "npm version major"
+    "major": "npm version major",
+    "build": "browserify ./app/src/main.js -p esmify > ./app/build/bundle.js -d"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   },
   "homepage": "https://github.com/Kade-95/Base#readme",
   "description": "",
-  "dependencies": {}
+  "devDependencies": {
+    "browser-resolve": "^2.0.0",
+    "esmify": "^2.1.1"
+  }
 }
