@@ -55,9 +55,18 @@ class JSElements extends Period {
         return { element, attributes, children }
     }
 
+    isElement(object) {
+        return object instanceof this.Element;
+    }
+
     createFromObject(object = {}, singleParent) {
         let created, name;
-        if (object.element instanceof Element) {
+
+        if (this.isElement(object)) {
+            created = object;
+            name = created.nodeName;
+        }
+        else if (this.isElement(object.element)) {
             created = object.element;
             name = created.nodeName;
         }
@@ -66,12 +75,13 @@ class JSElements extends Period {
             created = document.createElement(object.element);//generate the element
         }
 
-        if (this.isset(object.attributes)) {//set the attributes
+
+        if (this.isset(object.attributes) && !this.isElement(object)) {//set the attributes
             for (var attr in object.attributes) {
                 if (attr == 'style') {//set the styles
                     created.css(object.attributes[attr]);
                 }
-                else created.setAttribute(attr, object.attributes[attr]);
+                // else created.setAttribute(attr, object.attributes[attr]);
             }
         }
 
@@ -149,12 +159,12 @@ class JSElements extends Period {
         if (typeof singleParam == 'string') {
             element = this.createFromHTML(singleParam, singleParent);
         }
-        else if (singleParam.contructor == this.Element) {
+        else if (this.isElement(singleParam)) {
             element = singleParam;
             if (this.isset(singleParent)) singleParent.attachElement(element, singleParam.attachment);
         }
         //if params is object
-        else if (typeof singleParam == 'object') {
+        else if (singleParam.constructor == Object) {
             if (singleParam.perceptorElement) {
                 element = this.createPerceptorElement(singleParam, singleParent);
             }
@@ -163,7 +173,9 @@ class JSElements extends Period {
             }
         }
 
-        if (this.isset(element.setKey) && !this.isset(element.dataset.domKey)) element.setKey();
+        if (this.isset(element.setKey) && !this.isset(element.dataset.domKey)) {
+            element.setKey();
+        }
 
         if (this.isset(singleParam.list)) {
             let list = element.makeElement({ element: 'datalist', options: singleParam.list });
