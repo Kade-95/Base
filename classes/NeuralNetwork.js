@@ -1,6 +1,6 @@
-import { Matrix } from './Matrix.js';
-import { Func } from './Func.js';
-import { ArrayLibrary } from './../functions/Array.js';
+const Func = require('./Func');
+const Matrix = require('./Matrix');
+const ArrayLibrary = require('./../functions/ArrayLibrary');
 
 let func = new Func();
 let arrayLibrary = ArrayLibrary();
@@ -122,4 +122,4 @@ class NeuralNetwork {
     }
 }
 
-export { NeuralNetwork };
+module.exports = NeuralNetwork;

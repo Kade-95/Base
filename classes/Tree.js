@@ -529,4 +529,4 @@ class Tree {
     }
 }
 
-export { Tree };
+module.exports = Tree;

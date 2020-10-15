@@ -1,4 +1,4 @@
-import { Func } from './Func.js';
+const Func = require('./Func');
 
 class Period extends Func {
 
@@ -343,4 +343,4 @@ class Period extends Func {
     }
 }
 
-export { Period };
+module.exports = Period;

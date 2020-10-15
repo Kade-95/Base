@@ -1,4 +1,4 @@
-import { Template } from './Template.js';
+const Template = require('./Template');
 
 class Components extends Template {
     constructor() {
@@ -1167,7 +1167,7 @@ class Components extends Template {
             ]
         });
 
-        if(this.isset(container)){
+        if (this.isset(container)) {
             container.append(displayed);
         }
 
@@ -1300,4 +1300,4 @@ class Components extends Template {
     }
 }
 
-export { Components };
+module.exports = Components;

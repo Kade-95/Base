@@ -236,4 +236,4 @@ function ArrayLibrary() {
     return self;
 }
 
-export { ArrayLibrary };
+module.exports = ArrayLibrary;

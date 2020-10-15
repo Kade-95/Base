@@ -1,27 +1,24 @@
-import { Func } from './classes/Func.js';
-import { Matrix } from './classes/Matrix.js';
-import { NeuralNetwork } from './classes/NeuralNetwork.js';
-import { Template } from './classes/Template.js';
-import { Components } from './classes/Components.js';
-import { ColorPicker } from './classes/ColorPicker.js';
-import { Period } from './classes/Period.js';
-import { Icons } from './Icons.js';
-import { Shadow } from './functions/Shadow.js';
-import { ArrayLibrary } from './functions/Array.js';
-import { ObjectLibrary } from './functions/Objects.js';
-import { MathsLibrary } from './functions/Math.js';
-import { AnalysisLibrary } from './functions/Analytics.js';
-import { Compression } from './functions/Compression.js';
+const Func = require('./classes/Func');
+const Matrix = require('./classes/Matrix');
+const NeuralNetwork = require('./classes/NeuralNetwork');
+const Template = require('./classes/Template');
+const Components = require('./classes/Components');
+const ColorPicker = require('./classes/ColorPicker');
+const Period = require('./classes/Period');
+const Icons = require('./Icons');
+const Shadow = require('./functions/Shadow');
+const ArrayLibrary = require('./functions/ArrayLibrary');
+const ObjectsLibrary = require('./functions/ObjectsLibrary');
+const MathsLibrary = require('./functions/MathsLibrary');
+const AnalysisLibrary = require('./functions/AnalysisLibrary');
+const Compression = require('./functions/Compression');
 
 class Base extends Components {
     constructor() {
         super();
-        this.Matrix = Matrix;
-        this.NeuralNetwork = NeuralNetwork;
-        this.Shadow = Shadow;
         this.colorHandler = new ColorPicker();
         this.array = ArrayLibrary();
-        this.object = ObjectLibrary();
+        this.object = ObjectsLibrary();
         this.math = MathsLibrary();
         this.analytics = AnalysisLibrary();
         this.icons = Icons;
@@ -41,7 +38,7 @@ class Base extends Components {
     }
 }
 
-export {
+module.exports = {
     Base,
     ColorPicker,
     Period,
@@ -53,7 +50,7 @@ export {
     Icons,
     Shadow,
     ArrayLibrary,
-    ObjectLibrary,
+    ObjectsLibrary,
     MathsLibrary,
     AnalysisLibrary,
     Compression,

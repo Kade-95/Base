@@ -1,8 +1,28 @@
-import { ArrayLibrary } from './Array.js';
+const ArrayLibrary = require('./ArrayLibrary');
 let arrayLibrary = ArrayLibrary();
 
-function ObjectLibrary() {
+function ObjectsLibrary() {
     let self = {};
+
+    self.size = (object) => {
+        let bytes = 0;
+        if (typeof object == 'string') {
+            bytes += object.length * 2;
+        }
+        else if (typeof object == 'number') {
+            bytes += 8;
+        }
+        else if (typeof object == 'boolean') {
+            bytes += 4;
+        }
+        else if (typeof object == 'object') {
+            for (let i in object) {
+                bytes += roughObjectSize(object[i]);
+            }
+        }
+
+        return bytes;
+    }
 
     self.extractFromJsonArray = (meta, source) => {//extract a blueprint of data from a JsonArray
         let keys = Object.keys(meta);//get the keys
@@ -262,4 +282,4 @@ function ObjectLibrary() {
     return self;
 }
 
-export { ObjectLibrary };
+module.exports = ObjectsLibrary;

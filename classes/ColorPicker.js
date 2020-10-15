@@ -1,5 +1,5 @@
-import { Template } from './Template.js';
-import { Func } from './Func.js';
+const Func = require('./Func');
+const Template = require('./Template');
 
 function ColorPicker() {
 
@@ -523,4 +523,4 @@ function ColorPicker() {
     return self;
 }
 
-export { ColorPicker };
+module.exports = ColorPicker;

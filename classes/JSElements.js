@@ -1,4 +1,9 @@
-import { Period } from './Period.js';
+const Period = require('./Period');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const dom = new JSDOM('...');
+const window = dom.window;
+const { document, Element } = window;
 
 class JSElements extends Period {
     constructor() {
@@ -6,7 +11,8 @@ class JSElements extends Period {
     }
 
     loadCss(href = '') {
-        document.head.makeElement({ element: 'link', attributes: { rel: 'stylesheet', type: 'text/css', href } });
+        let element = this.createElement({ element: 'link', attributes: { rel: 'stylesheet', type: 'text/css', href } });
+        document.head.append(element);
     }
 
     jsonForm(form) {
@@ -154,7 +160,7 @@ class JSElements extends Period {
             }
         }
 
-        if (!this.isset(element.setKey)) element.setKey();
+        if (this.isset(element.setKey) && !this.isset(element.dataset.domKey)) element.setKey();
 
         if (this.isset(singleParam.list)) {
             let list = element.makeElement({ element: 'datalist', options: singleParam.list });
@@ -326,4 +332,4 @@ class JSElements extends Period {
     }
 }
 
-export { JSElements };
+module.exports = JSElements;

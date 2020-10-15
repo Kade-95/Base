@@ -1,8 +1,8 @@
-import { MathsLibrary } from './Math.js';
-let mathLibrary = MathsLibrary();
+const MathsLibrary = require('./MathsLibrary');
+const ObjectsLibrary = require('./ObjectsLibrary');
 
-import { ObjectLibrary } from './Objects.js';
-let objectLibrary = ObjectLibrary();
+let mathLibrary = MathsLibrary();
+let objectLibrary = ObjectsLibrary();
 
 function AnalysisLibrary() {
     let self = {};
@@ -117,4 +117,4 @@ function AnalysisLibrary() {
     return self;
 }
 
-export { AnalysisLibrary };
+module.exports = AnalysisLibrary;

@@ -1,4 +1,4 @@
-import { Func } from './Func.js';
+const Func = require('./Func');
 let func = new Func()
 
 class Matrix {
@@ -432,4 +432,4 @@ class Matrix {
     }
 }
 
-export { Matrix };
+module.exports = Matrix;

@@ -630,4 +630,4 @@ class Func {
     }
 }
 
-export { Func };
+module.exports = Func;

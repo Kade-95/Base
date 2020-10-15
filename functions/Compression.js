@@ -1,11 +1,10 @@
-import { ArrayLibrary } from './Array.js';
-let arrayLibrary = ArrayLibrary();
+const MathsLibrary = require('./MathsLibrary');
+const ObjectsLibrary = require('./ObjectsLibrary');
+const ArrayLibrary = require('./ArrayLibrary');
 
-import { MathsLibrary } from './Math.js';
 let mathLibrary = MathsLibrary();
-
-import { ObjectLibrary } from './Objects.js';
-let objectLibrary = ObjectLibrary();
+let objectLibrary = ObjectsLibrary();
+let arrayLibrary = ArrayLibrary();
 
 // import { Tree } from '../classes/Tree.js';
 
@@ -807,4 +806,4 @@ function Compression() {
     return self;
 }
 
-export { Compression };
+module.exports = Compression;

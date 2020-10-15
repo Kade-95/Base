@@ -1,4 +1,4 @@
-import { Func } from '../classes/Func.js';
+const Func = require('./../classes/Func');
 let func = new Func();
 
 function Shadow(element) {
@@ -257,4 +257,4 @@ function Shadow(element) {
     return self;
 }
 
-export { Shadow };
+module.exports = Shadow;

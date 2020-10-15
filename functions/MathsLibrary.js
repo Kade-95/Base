@@ -1,4 +1,4 @@
-import { ArrayLibrary } from './Array.js';
+const ArrayLibrary = require('./ArrayLibrary');
 let arrayLibrary = ArrayLibrary();
 
 function MathsLibrary() {
@@ -300,4 +300,4 @@ function MathsLibrary() {
     return self;
 }
 
-export { MathsLibrary };
+module.exports = MathsLibrary;

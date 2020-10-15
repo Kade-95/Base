@@ -192,4 +192,4 @@ Icons['youtube'] = 'fas, fa-youtube';
 Icons['undo'] = 'fas, fa-undo';
 
 
-export { Icons };
+module.exports = Icons;

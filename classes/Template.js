@@ -1,4 +1,9 @@
-import { JSElements } from './JSElements.js';
+const JSElements = require('./JSElements');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const dom = new JSDOM('...');
+const { window } = dom;
+const { document, Element, HTMLCollection, Node, NodeList } = window;
 
 class Template extends JSElements {
     constructor() {
@@ -1073,4 +1078,4 @@ class Template extends JSElements {
     }
 }
 
-export { Template };
+module.exports = Template;
