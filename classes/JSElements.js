@@ -1,18 +1,21 @@
 const Period = require('./Period');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const dom = new JSDOM('...');
-const window = dom.window;
-const { document, Element } = window;
+class Empty {
+}
 
 class JSElements extends Period {
-    constructor() {
+    constructor(theWindow = Empty) {
         super();
+        this.Element = theWindow.Element;
+        this.document = theWindow.document;
     }
 
     loadCss(href = '') {
         let element = this.createElement({ element: 'link', attributes: { rel: 'stylesheet', type: 'text/css', href } });
-        document.head.append(element);
+        if (this.document !== undefined) {
+            if (this.document['head'] !== undefined) {
+                this.document['head'].append(element);
+            }
+        }
     }
 
     jsonForm(form) {
@@ -146,7 +149,7 @@ class JSElements extends Period {
         if (typeof singleParam == 'string') {
             element = this.createFromHTML(singleParam, singleParent);
         }
-        else if (singleParam instanceof Element) {
+        else if (singleParam.contructor == this.Element) {
             element = singleParam;
             if (this.isset(singleParent)) singleParent.attachElement(element, singleParam.attachment);
         }

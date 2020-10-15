@@ -1,25 +1,21 @@
 const JSElements = require('./JSElements');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const dom = new JSDOM('...');
-const { window } = dom;
-const { document, Element, HTMLCollection, Node, NodeList } = window;
+
+class Empty {
+}
 
 class Template extends JSElements {
-    constructor() {
+    constructor(theWindow = Empty) {
         super();
         this.virtual = {};
-
-        this.elementLibrary();
-        this.nodeListLibrary();
-        this.htmlCollectionLibrary();
-        this.nodeLibrary();
+        this.elementLibrary(theWindow.Element);
+        this.htmlCollectionLibrary(theWindow.HTMLCollection);
+        this.nodeLibrary(theWindow.Node);
+        this.nodeListLibrary(theWindow.NodeList);
     }
 
-    elementLibrary() {
+    elementLibrary(Element = Empty) {
         //Framework with jsdom
         let self = this;
-
         Element.prototype.changeNodeName = function (name) {
             let structure = this.toJson();
             structure.element = name;
@@ -980,7 +976,7 @@ class Template extends JSElements {
         }
     }
 
-    htmlCollectionLibrary() {
+    htmlCollectionLibrary(HTMLCollection = Empty) {
         let self = this;
 
         HTMLCollection.prototype.popIndex = function (position = 0) {
@@ -1039,13 +1035,13 @@ class Template extends JSElements {
         };
     }
 
-    nodeLibrary() {
+    nodeLibrary(Node = Empty) {
         let self = this;
 
         Node.prototype.states = {};
     }
 
-    nodeListLibrary() {
+    nodeListLibrary(NodeList = Empty) {
         let self = this;
 
         NodeList.prototype['each'] = function (callback = () => { }) {
