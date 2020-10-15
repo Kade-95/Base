@@ -5,7 +5,7 @@ class Empty {
 
 class Template extends JSElements {
     constructor(theWindow = Empty) {
-        super();
+        super(theWindow);
         this.virtual = {};
         this.elementLibrary(theWindow.Element);
         this.htmlCollectionLibrary(theWindow.HTMLCollection);
