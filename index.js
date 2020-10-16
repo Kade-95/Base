@@ -56,5 +56,5 @@ module.exports = {
     ObjectsLibrary,
     MathsLibrary,
     AnalysisLibrary,
-    Compression,
+    Compression
 };
